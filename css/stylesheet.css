@@ -1,0 +1,28 @@
+body {
+  background-color: blanchedalmond;
+}
+
+h1 {
+  color: #d2691e;
+  font-size: 5rem;
+  font-style: italic;
+  text-align: center;
+}
+
+ul {
+  display: grid;
+  grid-auto-columns: 100px;
+}
+
+a {
+  font-size: 2rem;
+  color: #d2691e;
+  padding-top: 2rem;
+  text-decoration: none;
+  
+}
+
+a:hover {
+  transform: rotate(180deg); 
+  color: blueviolet; 
+}
