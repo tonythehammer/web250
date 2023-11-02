@@ -1,9 +1,10 @@
-<?php require_once('../private/initialize.php');
+<?php require_once('../private/initialize.php'); ?>
 
-$pageTitle = 'Inventory';
-include(SHARED_PATH . '/publicHeader.php'); ?>
+<?php $pageTitle = 'Inventory'; ?>
+<?php include(SHARED_PATH . '/publicHeader.php'); ?>
 
 <div id="main">
+
   <div id="page">
     <div class="intro">
       <img class="inset" src="<?php echo urlFor('/images/AdobeStock_55807979_thumb.jpeg') ?>" />
@@ -23,21 +24,29 @@ include(SHARED_PATH . '/publicHeader.php'); ?>
         <th>Price</th>
         <th>&nbsp;</th>
       </tr>
-      <?php
-      $bikes = Bicycle::findAll();
-      ?>
-      <?php foreach ($bikes as $bike) { ?>
-        <tr>
-          <td><?php echo h($bike->brand); ?></td>
-          <td><?php echo h($bike->model); ?></td>
-          <td><?php echo h($bike->year); ?></td>
-          <td><?php echo h($bike->category); ?></td>
-          <td><?php echo h($bike->gender); ?></td>
-          <td><?php echo h($bike->color); ?></td>
-          <td><?php echo h(moneyFormat('$', $bike->price)); ?></td>
-          <td><a href="detail.php?id=<?php echo $bike->id; ?>">View</a></td>
-        </tr>
+
+<?php
+
+$bikes = Bicycle::findAll();
+
+?>
+      <?php foreach($bikes as $bike) { ?>
+      <tr>
+        <td><?php echo h($bike->brand); ?></td>
+        <td><?php echo h($bike->model); ?></td>
+        <td><?php echo h($bike->year); ?></td>
+        <td><?php echo h($bike->category); ?></td>
+        <td><?php echo h($bike->gender); ?></td>
+        <td><?php echo h($bike->color); ?></td>
+        <td><?php echo h(money_format('$%i', $bike->price)); ?></td>
+        <td><a href="detail.php?id=<?php echo $bike->id; ?>">View</a></td>
+      </tr>
       <?php } ?>
+
     </table>
+
   </div>
-</div <?php include(SHARED_PATH . '/publicFooter.php'); ?>
+
+</div>
+
+<?php include(SHARED_PATH . '/publicFooter.php'); ?>

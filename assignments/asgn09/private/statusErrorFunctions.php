@@ -1,8 +1,8 @@
 <?php
 
-function displayErrors($errors = array()) {
+function displayErrors($errors=array()) {
   $output = '';
-  if(!empty($errors)){
+  if(!empty($errors)) {
     $output .= "<div class=\"errors\">";
     $output .= "Please fix the following errors:";
     $output .= "<ul>";
@@ -12,18 +12,18 @@ function displayErrors($errors = array()) {
     $output .= "</ul>";
     $output .= "</div>";
   }
-  return $output;  
+  return $output;
 }
 
-function getAndClearSessionMessage(){
+function getAndClearSessionMessage() {
   if(isset($_SESSION['message']) && $_SESSION['message'] != '') {
     $msg = $_SESSION['message'];
     unset($_SESSION['message']);
     return $msg;
-  } 
+  }
 }
 
-function displaySessionMessage(){
+function displaySessionMessage() {
   $msg = getAndClearSessionMessage();
   if(isset($msg) && $msg != '') {
     return '<div id="message">' . h($msg) . '</div>';

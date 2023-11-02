@@ -6,7 +6,7 @@
 
 <html lang="en">
   <head>
-    <title>Chain Gang - <?php echo h($page_title); ?></title>
+    <title>Chain Gang - <?php echo h($pageTitle); ?></title>
     <meta charset="utf-8">
     <link rel="stylesheet" media="all" href="<?php echo urlFor('/stylesheets/staff.css'); ?>" />
   </head>

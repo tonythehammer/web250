@@ -1,13 +1,14 @@
-<?php 
+<?php
 
-function urlFor($scriptPath) {
-  if($scriptPath[0] != '/'){
-    $scriptPath = "/" . $scriptPath;
+function urlFor($script_path) {
+  // add the leading '/' if not present
+  if($script_path[0] != '/') {
+    $script_path = "/" . $script_path;
   }
-  return WWW_ROOT . $scriptPath;
+  return WWW_ROOT . $script_path;
 }
 
-function u($string=""){
+function u($string="") {
   return urlencode($string);
 }
 
@@ -15,16 +16,18 @@ function rawU($string="") {
   return rawurlencode($string);
 }
 
-function h($string=""){
+function h($string="") {
   return htmlspecialchars($string);
 }
 
-function error404() {
-  header($_SERVER["SERVER_PROTOCOL"] . "404 Not Found");
+function error_404() {
+  header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
+  exit();
 }
 
-function error500() {
-  header($_SERVER["SERVER_PROTOCOL"] . "500 Internal Server Error");
+function error_500() {
+  header($_SERVER["SERVER_PROTOCOL"] . " 500 Internal Server Error");
+  exit();
 }
 
 function redirectTo($location) {
@@ -36,13 +39,13 @@ function isPostRequest() {
   return $_SERVER['REQUEST_METHOD'] == 'POST';
 }
 
-function isGetRequest(){
+function isGetRequest() {
   return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
 
-if(!function_exists('moneyFormat')) {
-  function moneyFormat($format,$number){
-    return '$'. number_format($number, 2);
+if(!function_exists('money_format')) {
+  function money_format($format, $number) {
+    return '$' . number_format($number, 2);
   }
 }
 

@@ -1,6 +1,7 @@
-<?php 
+<?php
 
 class DatabaseObject {
+
   static protected $database;
   static protected $tableName = "";
   static protected $columns = [];
@@ -15,37 +16,37 @@ class DatabaseObject {
     if(!$result) {
       exit("Database query failed.");
     }
-    
-    $objectArray =[];
-    while($record = $result->fetch_assoc()){
-      $objectArray[] = self:: instantiate($record);
+
+    $object_array = [];
+    while($record = $result->fetch_assoc()) {
+      $object_array[] = static::instantiate($record);
     }
 
     $result->free();
 
-    return $objectArray;
+    return $object_array;
   }
 
   static public function findAll() {
-    $sql = "SELECT * FROM bicycles";
-    return self::findBySql($sql);
+    $sql = "SELECT * FROM " . static::$tableName;
+    return static::findBySql($sql);
   }
 
-  static public function findById($id){
-    $sql = "SELECT * FROM bicycles ";
+  static public function findById($id) {
+    $sql = "SELECT * FROM " . static::$tableName . " ";
     $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
-    $objArray = self::findBySql($sql);
-    if(!empty($objArray)) {
-      return array_shift($objArray);
+    $obj_array = static::findBySql($sql);
+    if(!empty($obj_array)) {
+      return array_shift($obj_array);
     } else {
       return false;
     }
   }
 
   static protected function instantiate($record) {
-    $object = new self;
+    $object = new static;
     foreach($record as $property => $value) {
-      if(property_exists($object, $property)){
+      if(property_exists($object, $property)) {
         $object->$property = $value;
       }
     }
@@ -59,7 +60,7 @@ class DatabaseObject {
 
   protected function create() {
     $this->validate();
-    if(!empty($this->errors)) {return false;}
+    if(!empty($this->errors)) { return false; }
 
     $attributes = $this->sanitizedAttributes();
     $sql = "INSERT INTO " . static::$tableName . " (";
@@ -69,7 +70,7 @@ class DatabaseObject {
     $sql .= "')";
     $result = self::$database->query($sql);
     if($result) {
-      $this->id = self::$database->insertId;
+      $this->id = self::$database->insert_id;
     }
     return $result;
   }
@@ -90,8 +91,8 @@ class DatabaseObject {
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
-  }  
-  
+  }
+
   public function save() {
     if(isset($this->id)) {
       return $this->update();
@@ -115,23 +116,25 @@ class DatabaseObject {
       $attributes[$column] = $this->$column;
     }
     return $attributes;
-  } 
+  }
 
   protected function sanitizedAttributes() {
     $sanitized = [];
     foreach($this->attributes() as $key => $value) {
-      $sanitized[$key] = self::$database->escapeString($value);
+      $sanitized[$key] = self::$database->escape_string($value);
     }
     return $sanitized;
   }
 
   public function delete() {
     $sql = "DELETE FROM " . static::$tableName . " ";
-    $sql .= "WHERE id='" . self::$database->escapeString($this->id) . "' ";
+    $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);
     return $result;
+
   }
+
 }
 
 ?>
