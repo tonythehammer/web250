@@ -1,10 +1,10 @@
 <?php
 
-function urlFor($script_path) {
-  if($script_path[0] != '/') {
-    $script_path = "/" . $script_path;
+function urlFor($scriptPath) {
+  if($scriptPath[0] != '/') {
+    $script_path = "/" . $scriptPath;
   }
-  return WWW_ROOT . $script_path;
+  return WWW_ROOT . $scriptPath;
 }
 
 function u($string="") {
@@ -19,12 +19,12 @@ function h($string="") {
   return htmlspecialchars($string);
 }
 
-function error_404() {
+function error404() {
   header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
   exit();
 }
 
-function error_500() {
+function error500() {
   header($_SERVER["SERVER_PROTOCOL"] . " 500 Internal Server Error");
   exit();
 }
@@ -40,12 +40,6 @@ function isPostRequest() {
 
 function isGetRequest() {
   return $_SERVER['REQUEST_METHOD'] == 'GET';
-}
-
-if(!function_exists('money_format')) {
-  function money_format($format, $number) {
-    return '$' . number_format($number, 2);
-  }
 }
 
 ?>

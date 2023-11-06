@@ -5,7 +5,7 @@
   $id = $_GET['id'] ?? false;
 
   if(!$id) {
-    redirect_to('bicycles.php');
+    redirectTo('bicycles.php');
   }
 
   $bike = Bicycle::findById($id);
