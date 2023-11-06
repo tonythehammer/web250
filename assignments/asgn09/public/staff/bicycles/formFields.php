@@ -61,10 +61,10 @@ if(!isset($bicycle)) {
 <dl>
   <dt>Condition</dt>
   <dd>
-    <select name="bicycle[condition_id]">
+    <select name="bicycle[conditionId]">
       <option value=""></option>
     <?php foreach(Bicycle::CONDITION_OPTIONS as $cond_id => $cond_name) { ?>
-      <option value="<?php echo $cond_id; ?>" <?php if($bicycle->condition_id == $cond_id) { echo 'selected'; } ?>><?php echo $cond_name; ?></option>
+      <option value="<?php echo $cond_id; ?>" <?php if($bicycle->conditionId == $cond_id) { echo 'selected'; } ?>><?php echo $cond_name; ?></option>
     <?php } ?>
     </select>
   </dd>

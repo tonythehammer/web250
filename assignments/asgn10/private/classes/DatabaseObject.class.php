@@ -2,7 +2,6 @@
 
 class DatabaseObject
 {
-
   static protected $database;
   static protected $tableName = "";
   static protected $columns = [];
@@ -20,14 +19,14 @@ class DatabaseObject
       exit("Database query failed.");
     }
 
-    $object_array = [];
+    $objectArray = [];
     while ($record = $result->fetch_assoc()) {
-      $object_array[] = static::instantiate($record);
+      $objectArray[] = static::instantiate($record);
     }
 
     $result->free();
 
-    return $object_array;
+    return $objectArray;
   }
 
   static public function findAll()
@@ -38,11 +37,11 @@ class DatabaseObject
 
   static public function findById($id)
   {
-    $sql = "SELECT * FROM " . static::$tableName . " ";
+    $sql = "SELECT * FROM " .static::$tableName . " ";
     $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
-    $obj_array = static::findBySql($sql);
-    if (!empty($obj_array)) {
-      return array_shift($obj_array);
+    $objArray = static::findBySql($sql);
+    if (!empty($objArray)) {
+      return array_shift($objArray);
     } else {
       return false;
     }
@@ -93,13 +92,13 @@ class DatabaseObject
     }
 
     $attributes = $this->sanitizedAttributes();
-    $attribute_pairs = [];
+    $attributePairs = [];
     foreach ($attributes as $key => $value) {
-      $attribute_pairs[] = "{$key}='{$value}'";
+      $attributePairs[] = "{$key}='{$value}'";
     }
 
     $sql = "UPDATE " . static::$tableName . " SET ";
-    $sql .= join(', ', $attribute_pairs);
+    $sql .= join(', ', $attributePairs);
     $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
     $sql .= "LIMIT 1";
     $result = self::$database->query($sql);

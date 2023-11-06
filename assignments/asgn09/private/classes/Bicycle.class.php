@@ -3,7 +3,7 @@
 class Bicycle extends DatabaseObject {
 
   static protected $tableName = 'bicycles';
-  static protected $dbColumns = ['id', 'brand', 'model', 'year', 'category', 'color', 'gender', 'price', 'weight_kg', 'condition_id', 'description'];
+  static protected $dbColumns = ['id', 'brand', 'model', 'year', 'category', 'color', 'gender', 'price', 'weightKg', 'conditionId', 'description'];
 
   public $id;
   public $brand;
@@ -30,7 +30,6 @@ class Bicycle extends DatabaseObject {
   ];
 
   public function __construct($args=[]) {
-    //$this->brand = isset($args['brand']) ? $args['brand'] : '';
     $this->brand = $args['brand'] ?? '';
     $this->model = $args['model'] ?? '';
     $this->year = $args['year'] ?? '';
@@ -41,13 +40,6 @@ class Bicycle extends DatabaseObject {
     $this->price = $args['price'] ?? 0;
     $this->weightKg = $args['weightKg'] ?? 0.0;
     $this->conditionId = $args['conditionId'] ?? 3;
-
-    // Caution: allows private/protected properties to be set
-    // foreach($args as $k => $v) {
-    //   if(property_exists($this, $k)) {
-    //     $this->$k = $v;
-    //   }
-    // }
   }
 
   public function name() {

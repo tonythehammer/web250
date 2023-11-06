@@ -10,7 +10,7 @@ if(isPostRequest()) {
   if($result === true) {
     $new_id = $bicycle->id;
     $_SESSION['message'] = 'The bicycle was created successfully.';
-    redirect_to(urlFor('/staff/bicycles/show.php?id=' . $new_id));
+    redirectTo(urlFor('/staff/bicycles/show.php?id=' . $new_id));
   } else {
 
   }
