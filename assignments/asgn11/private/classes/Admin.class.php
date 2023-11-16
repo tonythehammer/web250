@@ -87,8 +87,8 @@ class Admin extends DatabaseObject {
     if($this->passwordRequired) {
       if(isBlank($this->password)) {
         $this->errors[] = "Password cannot be blank.";
-      } elseif (!hasLength($this->password, array('min' => 12))) {
-        $this->errors[] = "Password must contain 12 or more characters";
+      } elseif (!hasLength($this->password, array('min' => 6))) {
+        $this->errors[] = "Password must contain 6 or more characters";
       } elseif (!preg_match('/[A-Z]/', $this->password)) {
         $this->errors[] = "Password must contain at least 1 uppercase letter";
       } elseif (!preg_match('/[a-z]/', $this->password)) {

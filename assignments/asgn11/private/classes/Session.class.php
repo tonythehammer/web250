@@ -8,12 +8,17 @@ class Session {
 
   public const MAX_LOGIN_AGE = 60*60*24;
 
+  public function __construct() {
+    session_start();
+    $this->checkStoredLogin();
+  }
+
   public function login($admin){
     if($admin){
       session_regenerate_id();
-      $this->adminId = $_SESSION['admin_id'] = $admin->id;
+      $this->adminId = $_SESSION['adminId'] = $admin->id;
       $this->username = $_SESSION['username'] = $admin->username;
-      $this->lastLogin = $_SESSION['last_login'] = time();
+      $this->lastLogin = $_SESSION['lastLogin'] = time();
     }
     return true;
   }

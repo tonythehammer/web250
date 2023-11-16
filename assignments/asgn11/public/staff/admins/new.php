@@ -4,7 +4,7 @@ require_once('../../../private/initialize.php');
 
 requireLogin();
 
-if(is_post_request()) {
+if(isPostRequest()) {
 
   // Create record using post parameters
   $args = $_POST['admin'];
@@ -40,7 +40,7 @@ if(is_post_request()) {
 
     <form action="<?php echo urlFor('/staff/admins/new.php'); ?>" method="post">
 
-      <?php include('form_fields.php'); ?>
+      <?php include('formFields.php'); ?>
 
       <div id="operations">
         <input type="submit" value="Create Admin" />
@@ -51,4 +51,4 @@ if(is_post_request()) {
 
 </div>
 
-<?php include(SHARED_PATH . '/staff_footer.php'); ?>
+<?php include(SHARED_PATH . '/staffFooter.php'); ?>
