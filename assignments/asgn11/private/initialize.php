@@ -31,4 +31,6 @@
   $database = dbConnect();
   DatabaseObject::setDatabase($database);
 
+  $session = new Session;
+
 ?>

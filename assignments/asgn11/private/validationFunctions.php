@@ -52,7 +52,13 @@
     return preg_match($email_regex, $value) === 1;
   }
 
-  function hasUniqueUsername($username, $current_id="0") {
+  function hasUniqueUsername($username, $currentId="0") {
+    $admin = Admin::findByUsername($username);
+    if($admin === false || $admin->id == $currentId){
+      return true;
+    } else {
+      return false;
+    }
   }
 
 ?>

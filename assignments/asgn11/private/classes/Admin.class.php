@@ -109,7 +109,7 @@ class Admin extends DatabaseObject {
     return $this->errors;
   }
 
-  static public function find_by_username($username) {
+  static public function findByUsername($username) {
     $sql = "SELECT * FROM " . static::$tableName . " ";
     $sql .= "WHERE username='" . self::$database->escape_string($username) . "'";
     $obj_array = static::findBySql($sql);
