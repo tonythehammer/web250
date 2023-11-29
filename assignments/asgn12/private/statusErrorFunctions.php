@@ -3,7 +3,7 @@
 function requireLogin() {
   global $session;
   if(!$session->isLoggedIn()) {
-    redirectTo(urlFor('/staff/login.php'));
+    redirectTo(urlFor('/user/login.php'));
   } else {
   }
 }
